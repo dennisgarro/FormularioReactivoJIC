@@ -22,6 +22,25 @@ export class LoginComponent implements OnInit {
   submit() {
     debugger;
     if (this.loginform.valid) {
+      let email = this.loginform.get('email')?.value;
+      let contra = this.loginform.get('password')?.value;
+      // agragar variable al sessionStorage
+      sessionStorage.setItem('correo', email);
+
+      // crear objeto 
+      let obj = { correo: email, pass: contra, ejemplo: 'dennis' }
+      // agregar objeto al sessionStorage
+      sessionStorage.setItem('objeto', JSON.stringify(obj));
+
+      // acceder a los valores del objeto en el sessionStorage
+      let objdeserializado = sessionStorage.getItem('objeto');
+      if (objdeserializado) {
+        let objseruializado = JSON.parse(objdeserializado)
+        console.log(objseruializado);
+
+      }
+
+
       console.log("formularo correcto");
     } else {
       console.log("formulario invalido");
@@ -30,3 +49,4 @@ export class LoginComponent implements OnInit {
     }
   }
 }
+
